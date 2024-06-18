@@ -1,10 +1,11 @@
 import { View,Text,StyleSheet } from "react-native";
 
-const Item = ({title,author}) => {
+const Item = ({title,author,description,publishedAt}) => {
     return (
     <View style={styles.itemCtr}>
-      <Text style={styles.title}>{title} jsdj</Text>
-      <Text style={styles.author}>By : {author}</Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text numberOfLines={2} style={styles.description}>{description} </Text>
+      <Text style={styles.author}>By : {author} on {publishedAt}</Text>
       
     </View>
     )
@@ -19,9 +20,15 @@ const styles = StyleSheet.create({
        padding:10,
        borderWidth:1,
        borderColor:'#ebeae8',
-       marginVertical:5
+       marginVertical:5,
+       
     },
-    title:{fontSize:12,fontWeight:'bold'},
-    author:{fontSize:10,fontStyle:'italic'}
+    description:{
+
+    },
+    title:{fontSize:14,fontWeight:'bold'},
+    description:{fontSize:13},
+    author:{fontSize:10,fontStyle:'italic'},
+    date:{fontSize:10,fontStyle:'italic'}
   });
   
