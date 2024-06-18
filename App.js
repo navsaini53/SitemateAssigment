@@ -1,11 +1,11 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { StyleSheet, FlatList, StatusBar, ActivityIndicator, TextInput, Text, View, TouchableOpacity } from 'react-native';
+import {primaryColor} from './const'
 
 import { fetchResultFromCloud } from './request';
 import FlatItem from "./flatItem";
 
-const primaryColor = '#211f4a'
 
 export default function App() {
 

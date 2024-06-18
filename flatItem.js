@@ -1,5 +1,7 @@
 import { View,Text,StyleSheet,Image } from "react-native";
 
+
+import {primaryColor} from './const'
 const Item = ({title,author,description,publishedAt,urlToImage}) => {
     return (
     <View style={styles.itemCtr}>
@@ -40,9 +42,12 @@ const styles = StyleSheet.create({
     },
     
     tinyLogo:{
-
+        resizeMode: 'cover',
         width:30,
-        height:30
+        height:30,
+        borderWidth:2,
+        borderColor:primaryColor
+        
     },
     title:{
         fontSize:14,
