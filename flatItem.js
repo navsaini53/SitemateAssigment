@@ -1,9 +1,19 @@
-import { View,Text,StyleSheet } from "react-native";
+import { View,Text,StyleSheet,Image } from "react-native";
 
-const Item = ({title,author,description,publishedAt}) => {
+const Item = ({title,author,description,publishedAt,urlToImage}) => {
     return (
     <View style={styles.itemCtr}>
-      <Text style={styles.title}>{title}</Text>
+        <View style={styles.infoCtr}>
+        <Image
+        style={styles.tinyLogo}
+        source={{
+          uri: urlToImage,
+        }}
+      />
+        <Text style={styles.title}>{title}</Text>
+        </View>
+     
+     
       <Text numberOfLines={2} style={styles.description}>{description} </Text>
       <Text style={styles.author}>By : {author} on {publishedAt}</Text>
       
@@ -23,10 +33,24 @@ const styles = StyleSheet.create({
        marginVertical:5,
        
     },
-    description:{
+    infoCtr:{
 
+        flexDirection:'row',
+        marginBottom:5
     },
-    title:{fontSize:14,fontWeight:'bold'},
+    
+    tinyLogo:{
+
+        width:30,
+        height:30
+    },
+    title:{
+        fontSize:14,
+        justifyContent:'center',
+        textAlign:'center',
+        alignItems:'center',
+        padding:6,
+        fontWeight:'bold'},
     description:{fontSize:13},
     author:{fontSize:10,fontStyle:'italic'},
     date:{fontSize:10,fontStyle:'italic'}

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, FlatList, StatusBar, ActivityIndicator, TextInput, Text, View, TouchableOpacity } from 'react-native';
 
-import { sendOtpAction } from './request';
+import { fetchResultFromCloud } from './request';
 import FlatItem from "./flatItem";
 
 const primaryColor = '#211f4a'
@@ -14,20 +14,28 @@ export default function App() {
   const [totalRecords, setTotal] = useState(0);
   const [loader, setLoader] = useState(false);
 
-
   const searchList = () => {
-    setLoader(true)
-    setResults([])
-    setTotal(0)
-    sendOtpAction({ searchTxt }).then(({ articles, totalResults, status }) => {
-      console.log(status)
-      if (status == 'ok') {
-        setResults(articles)
-        setTotal(totalResults)
-      }
+    
+    try{
+      setLoader(true)
+      setResults([])
+      setTotal(0)
+      fetchResultFromCloud({ searchTxt }).then(({ articles, totalResults, status }) => {
+      
+        if (status == 'ok') {
+          setResults(articles)
+          setTotal(totalResults)
+        }
+        setLoader(false)
+  
+      })
+    }catch(e){
       setLoader(false)
-
-    })
+      setResults([])
+      setTotal(0)
+      alert("Something went wrong with api call")
+    }
+   
   }
   return (
     <View style={styles.container}>
@@ -73,6 +81,7 @@ export default function App() {
                   title={item.author}
                   description={item.description}
                   publishedAt={item.publishedAt}
+                  urlToImage={item.urlToImage}
                 />}
                 keyExtractor={(item, index) => `${index}`}
               />
